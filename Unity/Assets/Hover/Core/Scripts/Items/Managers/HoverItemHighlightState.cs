@@ -20,16 +20,16 @@ namespace Hover.Core.Items.Managers {
 		}
 
 		public bool IsHighlightPrevented { get; private set; }
-		public Highlight? NearestHighlight { get; private set; }
+		public Highlight? NearestHighlight { get; protected set; }
 		public List<Highlight> Highlights { get; private set; }
-		public bool IsNearestAcrossAllItemsForAnyCursor { get; private set; }
+		public bool IsNearestAcrossAllItemsForAnyCursor { get; protected set; }
 		
 		public HoverCursorDataProvider CursorDataProvider;
 		public HoverItemRendererUpdater ProximityProvider;
 		public HoverInteractionSettings InteractionSettings;
 
 		private readonly HashSet<string> vPreventHighlightMap;
-		private readonly HashSet<CursorType> vIsNearestForCursorTypeMap;
+		protected readonly HashSet<CursorType> vIsNearestForCursorTypeMap;
 
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
@@ -166,7 +166,7 @@ namespace Hover.Core.Items.Managers {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		private void AddLatestHighlightsAndFindNearest() {
+		protected virtual void AddLatestHighlightsAndFindNearest() {
 			float minDist = float.MaxValue;
 			List<ICursorData> cursors = CursorDataProvider.Cursors;
 			int cursorCount = cursors.Count;
@@ -194,7 +194,7 @@ namespace Hover.Core.Items.Managers {
 		}
 
 		/*--------------------------------------------------------------------------------------------*/
-		private Highlight CalculateHighlight(ICursorData pCursor) {
+		protected Highlight CalculateHighlight(ICursorData pCursor) {
 			var high = new Highlight();
 			high.Cursor = pCursor;
 			

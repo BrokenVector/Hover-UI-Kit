@@ -81,7 +81,7 @@ namespace Hover.Core.Renderers {
 		}
 		
 		/*--------------------------------------------------------------------------------------------*/
-		protected virtual void CreateMesh() {
+		public virtual void CreateMesh() {
 			Mesh mesh = new Mesh();
 			mesh.name = gameObject.name+"Mesh:"+GetInstanceID();
 			mesh.hideFlags = HideFlags.HideAndDontSave;

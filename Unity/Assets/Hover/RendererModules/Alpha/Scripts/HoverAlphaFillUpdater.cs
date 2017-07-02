@@ -1,4 +1,5 @@
-﻿using Hover.Core.Renderers;
+﻿using BrokenVector.VoxVR.Systems.Brush;
+using Hover.Core.Renderers;
 using Hover.Core.Utils;
 using UnityEngine;
 
@@ -52,8 +53,14 @@ namespace Hover.RendererModules.Alpha {
 		private void UpdateChildMesh(HoverMesh pChildMesh) {
 			HoverAlphaMeshUpdater meshUp = pChildMesh.GetComponent<HoverAlphaMeshUpdater>();
 
-			if ( meshUp == null ) {
-				return;
+			if ( meshUp == null )
+			{
+			    ColorSelectionMeshUpdater colorSelectionMeshUpdater = pChildMesh.GetComponent<ColorSelectionMeshUpdater>();
+
+			    colorSelectionMeshUpdater.SortingLayer = SortingLayer;
+			    colorSelectionMeshUpdater.Alpha = Alpha;
+
+                return;
 			}
 
 			meshUp.Controllers.Set(HoverAlphaMeshUpdater.SortingLayerName, this);

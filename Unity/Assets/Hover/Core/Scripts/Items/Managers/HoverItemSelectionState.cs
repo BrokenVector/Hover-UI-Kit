@@ -10,11 +10,24 @@ namespace Hover.Core.Items.Managers {
 	[RequireComponent(typeof(HoverItemHighlightState))]
 	public class HoverItemSelectionState : MonoBehaviour {
 
-		public float SelectionProgress { get; private set; }
+		public virtual float SelectionProgress { get; private set; }
 		public bool IsSelectionPrevented { get; private set; }
-		public bool WasSelectedThisFrame { get; private set; }
-		
-		private DateTime? vSelectionStart;
+		public virtual bool WasSelectedThisFrame { get; private set; }
+
+        public DateTime? SelectionStart
+        {
+            get
+            {
+                return vSelectionStart;
+            }
+
+            set
+            {
+                vSelectionStart = value;
+            }
+        }
+
+        private DateTime? vSelectionStart;
 		private float vDistanceUponSelection;
 
 
